@@ -4,7 +4,7 @@ import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import Header from "@/components/Header";
 import Spotlight from "@/components/Spotlight";
-import HorizontalScroll from "@/components/HorizontalScroll";
+import PictureCardGrid from "@/components/PictureCardGrid";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +23,7 @@ export default function Home() {
 			<main>
 				<Header />
 				<Spotlight />
-				<HorizontalScroll />
+				<PictureCardGrid />
 			</main>
 			{/* <main className={styles.main}>
         <div className={styles.description}>

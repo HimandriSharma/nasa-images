@@ -21,12 +21,12 @@ function Spotlight() {
 	return (
 		<div style={{ padding: "2rem" }}>
 			<Row justify="space-between" align="middle" gutter={16}>
-				<Col span={10}>
+				<Col sm={24} md={10} >
 					<h2 className={inter.className}>{spot.title}</h2><br/>
 					<p className={inter.className}>{spot.explanation}</p><br/>
                     <p className={inter.className}>authored by <b>{spot.copyright}</b></p>
 				</Col>
-				<Col span={10}>
+				<Col sm={16} md ={12} lg={10}>
 						<Image
 							loader={() => spot.url}
 							src={spot.url}
