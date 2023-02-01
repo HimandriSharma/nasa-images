@@ -9,7 +9,7 @@ function PictureCardGrid({ imagesData, fetchImages }: any) {
 		fetchImages();
 	}, []);
 	return imagesData.loading ? (
-		<h1>Loading</h1>
+		<h1>Loading...</h1>
 	) : imagesData.error ? (
 		<p>{imagesData.error}</p>
 	) : (
