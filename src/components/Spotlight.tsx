@@ -1,7 +1,10 @@
 import { Col, Row } from "antd";
+import { changeOverlay } from "@/redux";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import { useState } from "react";
+import { connect } from "react-redux";
+import { useEffect, useState } from "react";
+import Router from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,36 +19,54 @@ const sampleData = {
 	title: "Lunation Matrix",
 	url: "https://apod.nasa.gov/apod/image/1301/cygnuswall_pavelchak_1600.jpg",
 };
-function Spotlight() {
+function Spotlight({ spotlight, changeOverlay }: any) {
 	const [spot, setSpot] = useState(sampleData);
-	return (
-		<div style={{ padding: "2rem" }}>
+	useEffect(() => {
+		setSpot(spotlight.spotlight);
+	}, [spotlight.spotlight]);
+	return spotlight.loading ? (
+		<h3>Loading Spotlight...</h3>
+	) : (
+		<div
+			style={{ padding: "2rem" }}
+			onClick={() => {
+				changeOverlay(spot);
+				Router.push("/details");
+			}}
+		>
 			<Row justify="space-between" align="middle" gutter={16}>
-				<Col sm={24} md={10} >
-					<h2 className={inter.className}>{spot.title}</h2><br/>
-					<p className={inter.className}>{spot.explanation}</p><br/>
-                    <p className={inter.className}>authored by <b>{spot.copyright}</b></p>
+				<Col sm={24} md={10}>
+					<h2 className={inter.className}>{spot.title}</h2>
+					<br />
+					<p className={inter.className}>{spot.explanation}</p>
+					<br />
+					<p className={inter.className}>
+						authored by <b>{spot.copyright}</b>
+					</p>
 				</Col>
-				<Col sm={16} md ={12} lg={10}>
-						<Image
-							loader={() => spot.url}
-							src={spot.url}
-							alt="NASA Logo"
-							width={500}
-							height={350}
-                            style={{borderRadius:"1rem"}}
-						/>
-					{/* <Image
+				<Col sm={16} md={12} lg={10}>
+					<Image
+						loader={() => spot.url}
 						src={spot.url}
 						alt="NASA Logo"
-						width={100}
-						height={24}
-						priority
-					/> */}
+						width={500}
+						height={350}
+						style={{ borderRadius: "1rem" }}
+					/>
 				</Col>
 			</Row>
 		</div>
 	);
 }
-
-export default Spotlight;
+const mapStateToProps = (state: any) => {
+	return {
+		spotlight: state.images,
+	};
+};
+const mapDispatchToProps = (dispatch: any) => {
+	return {
+		changeOverlay: (selectedImage: any) =>
+			dispatch(changeOverlay(selectedImage)),
+	};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Spotlight);

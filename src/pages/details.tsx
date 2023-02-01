@@ -31,8 +31,7 @@ function details(props: any) {
 					alt="Image from NASA"
 					fill
 				/>
-			) :
-			props.overlay?.media_type === "video" ? (
+			) : props.overlay?.media_type === "video" ? (
 				<YouTube
 					videoId={youtube_parser(props.overlay.url)}
 					opts={opts}

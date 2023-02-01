@@ -7,12 +7,14 @@ import {
 const initialState = {
 	loading: true,
 	images: [],
+	spotlight: {},
 	error: "",
 };
 
 const reducer = (
 	state = initialState,
 	action: {
+		spotlight: any;
 		payload: any;
 		type: any;
 	}
@@ -27,12 +29,14 @@ const reducer = (
 			return {
 				loading: false,
 				images: action.payload,
+				spotlight: action.spotlight,
 				error: "",
 			};
 		case FETCH_IMAGES_FAILURE:
 			return {
 				loading: false,
 				images: [],
+				spotlight: {},
 				error: action.payload,
 			};
 		default:

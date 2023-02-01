@@ -10,10 +10,11 @@ export const fetchImagesRequest = () => {
 		type: FETCH_IMAGES_REQUEST,
 	};
 };
-export const fetchImagesSuccess = (images: any) => {
+export const fetchImagesSuccess = (images: any, spotlight: any) => {
 	return {
 		type: FETCH_IMAGES_SUCCESS,
 		payload: images,
+		spotlight,
 	};
 };
 export const fetchImagesFailure = (error: { message: any }) => {
@@ -32,11 +33,12 @@ export const fetchImages = () => {
 			)
 			.then((res) => {
 				const images = [];
+				const spotlight = res.data[res.data.length - 1];
 				while (res.data.length > 0) {
 					const chunk = res.data.splice(0, 7);
 					images.push(chunk);
 				}
-				dispatch(fetchImagesSuccess(images));
+				dispatch(fetchImagesSuccess(images, spotlight));
 			})
 			.catch((err) => {
 				const errorMsg = err.message;
