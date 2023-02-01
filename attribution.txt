@@ -1,0 +1,7 @@
+This Project uses following plugins : 
+Ant Designs (UI Library)
+react-infinite-scroll-component(For infinite scrolling)
+react-youtube(For displaying videos on UI)
+Redux(For state management)
+Redux Thunk and axios(For API integrations)
+@ant-design/icons(For Icons on UI)
