@@ -2,6 +2,7 @@ import {
 	FETCH_IMAGES_FAILURE,
 	FETCH_IMAGES_REQUEST,
 	FETCH_IMAGES_SUCCESS,
+	FETCH_MORE_IMAGES_SUCCESS,
 } from "./imagesType";
 
 const initialState = {
@@ -38,6 +39,12 @@ const reducer = (
 				images: [],
 				spotlight: {},
 				error: action.payload,
+			};
+		case FETCH_MORE_IMAGES_SUCCESS:
+			return {
+				...state,
+				images: state.images.concat(action.payload),
+				error: "",
 			};
 		default:
 			return state;
