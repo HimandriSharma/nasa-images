@@ -48,7 +48,7 @@ function Spotlight({ spotlight, changeOverlay }: any) {
 						<></>
 					)}
 				</Col>
-				<Col sm={16} md={12} lg={10}>
+				<Col sm={16} md={14} lg={12} flex="none">
 					{spot.media_type === "image" ? (
 						<Image
 							loader={() => spot.url}

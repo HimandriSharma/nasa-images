@@ -76,7 +76,6 @@ export const fetchMoreImages = (
 			})
 			.catch((err) => {
 				const errorMsg = err.message;
-				console.log(errorMsg);
 			});
 	};
 };
